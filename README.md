@@ -1,5 +1,7 @@
 <h2>**Projeto de ECG remoto**</h2>
 
+![alt text](img.png)
+
 <p>Requisitos</p>
 <ul>   
     <li>NodeJS</li>
@@ -20,3 +22,4 @@ rode o comando
    
    $ yarn install
 ```
+

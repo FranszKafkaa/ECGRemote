@@ -5,9 +5,9 @@ from biosppy.signals import ecg
 
 
 # load raw ECG signal
-signal, mdata = storage.load_txt('python_src/Files/ecg.txt')
+signal, mdata = storage.load_txt('python_src/Files/1 NSR/103m (0).txt')
 
-rate = 1000
+rate = 360
 
 out = ecg.ecg(signal=signal, sampling_rate=rate, show=False)
 
