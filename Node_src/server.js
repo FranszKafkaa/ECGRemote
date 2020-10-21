@@ -13,6 +13,6 @@ app.use(allowCrossDomain);
 app.use(bp.json()).use(bp.urlencoded({extended: true})).use(router)
 
 
-app.listen(process.env.PORT | 3333, () => {
+app.listen(process.env.PORT || 3333, () => {
     console.log("ta ouvindo bem")
 })
