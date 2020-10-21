@@ -28,6 +28,10 @@ router.post("/demo", (req, res) => {
 })
 
 
+router.get("/", (req,res) => {
+    res.json( {"res" :"pinto"})
+})
+
 router.post("/uploads",(req,res) => {
     upload(req,res, err => {
         if(err instanceof multer.MulterError)
