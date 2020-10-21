@@ -2,6 +2,7 @@ const app = require("express")()
 const router = require('./router')
 const bp = require('body-parser')
 
+
 let allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Headers', "*");
@@ -9,9 +10,9 @@ let allowCrossDomain = (req, res, next) => {
 }
 app.use(allowCrossDomain);
 
-app.use(router).use(bp.json()).use(bp.urlencoded({extended: true}))
+app.use(bp.json()).use(bp.urlencoded({extended: true})).use(router)
 
 
-app.listen(3333, () => {
+app.listen(process.env.PORT | 3333, () => {
     console.log("ta ouvindo bem")
 })

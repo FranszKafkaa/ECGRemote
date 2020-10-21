@@ -14,10 +14,28 @@
     </head>
     <body onload="new init().iniciar()">
     <h1><i>ECG Chart Engine</i></h1>
+<!--        <form method="post" id="form" enctype="multipart/form-data">-->
+<!--            <input type="file" name="files" id="files" multiple required>-->
+<!--            <input type="submit" id="enviar" value="Send File">-->
+<!--        </form>-->
+    <br>
+    <div>
         <button id="reload" onclick="new init().iniciar()"><img src="reload.png" alt="reload"/></button>
         <div id="chartContainer" style="height: 400px; width: 100%;"></div>
 
-        <script src="js/canvasjs.min.js"></script>
-        <script src="./js/main.js"></script>
+
+    </div>
+
+    <!--Scripts-->
+    <script src="js/canvasjs.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+        document.getElementById("enviar").addEventListener("click", (Event) => {
+            Event.preventDefault()
+
+            new init().sendFile()
+        })
+    </script>
+    <!-- End Scripts -->
     </body>
 </html>

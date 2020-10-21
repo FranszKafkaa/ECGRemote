@@ -1,21 +1,21 @@
 class init {
     constructor() {
         this.data = []
+        this.loadData = document.querySelector("#chartContainer")
     }
 
-    async iniciar() {
-        let loadData = document.querySelector("#chartContainer")
+    async iniciar () {
 
-        loadData.innerHTML += "<h1>Loading Chart Data...</h1>";
+        this.loadData.innerHTML += "<h1>Loading Chart Data...</h1>";
 
 
-        let api = await fetch("http://localhost:3333/", {
-            method: "GET",
+        let api = await fetch("http://localhost:3333/demo", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                 'Content-Type': 'application/json'
             }
         }).catch((err) => {
-            loadData.innerHTML += `<h1>Error on load Data ${err} </h1>`;
+            this.loadData.innerHTML += `<h1>Error on load Data ${err} </h1>`;
         })
 
 
@@ -62,5 +62,25 @@ class init {
 
 
         }
+    }
+
+    async sendFile(){
+
+        let form = new FormData(document.getElementById("form"))
+
+
+        let api = await fetch("http://localhost:3333/uploads", {
+            method: "POST",
+
+            body: form
+        })
+
+        if(api.ok){
+            api.json().then(data => {
+                console.log(data)
+            })
+        }
+
+
     }
 }
