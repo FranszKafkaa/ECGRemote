@@ -5,8 +5,10 @@ class set_data{
         return execSync(command, { cwd, encoding: "utf8" });
     }
     getShaHead(cwd) {
-        return this.run(cwd, "python3 ./python_src/main.py");
+        return this.run(cwd, "la -la");
     }
 }
+
+//python3 ./python_src/main.py
 
 module.exports = new set_data()
