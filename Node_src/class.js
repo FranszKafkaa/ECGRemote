@@ -5,7 +5,7 @@ class set_data{
         return execSync(command, { cwd, encoding: "utf8" });
     }
     getShaHead(cwd) {
-        return this.run(cwd, "ls -la");
+        return this.run(cwd, "echo penis");
     }
 }
 
