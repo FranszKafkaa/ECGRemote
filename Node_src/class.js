@@ -5,10 +5,10 @@ class set_data{
         return execSync(command, { cwd, encoding: "utf8" });
     }
     getShaHead(cwd) {
-        return this.run(cwd, "echo penis");
+        return this.run(cwd, "python3 ./python_src/main.py");
     }
 }
 
-//python3 ./python_src/main.py
+
 
 module.exports = new set_data()
