@@ -21,24 +21,24 @@ const storage = multer.diskStorage({
 
 let upload = multer({storage}).fields([{name: "files", maxCount: 12}])
 
-router.post("/demo", (req, res) => {
-
-    res.json({"res": JSON.parse(data.getShaHead())})
-
-})
+// router.post("/demo", (req, res) => {
+//
+//     res.json({"res": JSON.parse(data.getShaHead())})
+//
+// })
 
 
 router.get("/", (req,res) => {
     res.json( {"res" :"pinto"})
 })
 
-router.post("/uploads",(req,res) => {
-    upload(req,res, err => {
-        if(err instanceof multer.MulterError)
-            throw new Error(err)
-        console.log(req.files)
-    })
-
-})
+// router.post("/uploads",(req,res) => {
+//     upload(req,res, err => {
+//         if(err instanceof multer.MulterError)
+//             throw new Error(err)
+//         console.log(req.files)
+//     })
+//
+// })
 
 module.exports = router
