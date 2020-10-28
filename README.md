@@ -13,12 +13,17 @@ rode o comando
 <br>
 
 ```bash
-    #rodar no docker 
+    #rodar o codigo fonte juntamente com o docker 
+    git clone https://github.com/MarceloSkank/ECGRemote.git
     docker build -t "<nome da imagem>" ./
 
     docker run "<nome da imagem>"
 
-    #rodar localmente 
+    #rodar somente a imagem 
+    docker pull marcelojanke/ecg_remoto
+    docker run -p 3333:3333 marcelojanke/ecg_remoto
+
+    #rodar localmente (sem o docker) 
     npm install ou yarn install
     
     pip3 install biosppy 
