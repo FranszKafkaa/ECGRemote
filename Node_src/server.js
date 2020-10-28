@@ -14,5 +14,5 @@ app.use(bp.json()).use(bp.urlencoded({extended: true})).use(router)
 
 
 app.listen(process.env.PORT || 3333, () => {
-    console.log("ta ouvindo bem")
+    console.log("server started")
 })

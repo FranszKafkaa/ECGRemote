@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
 let upload = multer({storage}).fields([{name: "files", maxCount: 12}])
 
-router.post("/demo", (req, res) => {
+router.post("/demo", (_req, res) => {
 
     res.json({"res": JSON.parse(data.getShaHead())})
 
