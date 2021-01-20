@@ -17,7 +17,7 @@ rode o comando
     git clone https://github.com/MarceloSkank/ECGRemote.git
     docker build -t "<nome da imagem>" ./
 
-    docker run "<nome da imagem>"
+    docker run -p 3333:3333 "<nome da imagem>"
 
     #rodar somente a imagem 
     docker pull marcelojanke/ecg_remoto

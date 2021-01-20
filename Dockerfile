@@ -6,6 +6,7 @@ LABEL AUTHOR="Marcelo Janke <marcelojanke@live.com>"
 WORKDIR /app
 COPY package.json /app
 
+
 RUN npm install
 COPY . /app
 
@@ -17,4 +18,4 @@ RUN \
 RUN pip3 install biosppy
 
 EXPOSE 3333
-CMD ["node", "Node_src/server.js"]
+CMD ["npm", "run", "start"]
