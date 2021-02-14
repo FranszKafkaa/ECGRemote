@@ -10,6 +10,8 @@ let allowCrossDomain = (req, res, next) => {
 }
 app.use(allowCrossDomain);
 
+app.set('view engine', 'html')
+
 app.use(bp.json()).use(bp.urlencoded({extended: true})).use(router)
 
 

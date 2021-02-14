@@ -1,44 +1,71 @@
-const path = require("path")
-
-const sqlite = require('sqlite3').verbose()
-
+const mysql = require('mysql')
 
 
 class dbo {
     constructor() {
-        this.db = new sqlite.Database(path.resolve(__dirname, "../", "database/", "data.db"), err => {
-            if(err) throw err; 
+        this.connection = mysql.createConnection({
+            host: "cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+            user: "fmlicoli8fxucbwn",
+            password: "x9f4idv8lb53v01m",
+            database: "p63fwwhqfebs9wx3",
+            port: 3306
+        })
+
+        this.connection.connect(err => {
+            if (err) throw err
 
             console.log("Banco conectado")
         })
 
     }
-    get_all(res){  
-        this.db.all("select * from user_data order by data desc limit 5", [], (err, row) => {
-            if (err) throw err;
 
-            res.json(row);        
+    save_txt(data){
+        this.connection.query("insert into req_txt_log(nome_arquivo, caminho_arquivo,ip,json_data,user_agent,StatusCode,rota,method) values (?,?,?,?,?,?,?,?)", 
+        data, (err, result) => {
+            if(err) throw err
+
+            console.log(result)
+        })
+    }
+    get_txt(res){
+        this.connection.query("select * from req_txt_log", (err, result ) => {
+            if(err) throw err 
+
+            res.json(result)
+        })
+    }
+
+    get_all(res){  
+        this.connection.query("select * from user_data", (err, result) => {
+            if(err) throw err
+
+            res.json(result)
+
         })
 
+        
     }
 
     insert_data(data, res){
-        console.log(data)
-        this.db.run("insert into user_data values (?,DATETIME('now', 'localtime'),?, ?)", data, (err) => {
-            if (err)  throw err
-        })
+        this.connection.query("insert into user_data(data_req,ip,json_data, user_agent) values (CURDATE(), ?, ?, ?)", 
+        data, (err, result)=>{
+            if(err) throw err
 
-        res.json({"res" : "Log Salvo"})
+            console.log(result)
+
+            res.json({"res" : "Log Salvo"})
+
+        })
     }
 
     deleteAll(res){
-        this.db.run("delete from user_data", [], (err) => {
-            if (err) throw err
+        this.connection.query("delete from user_data", (err, result) => {
+            if(err) throw err
+
+            console.log(result)
+            res.json({"res": "log Deletado"})
         })
-
-        res.json({"res" : "logs removidos"})
     }
-
 }
 
 

@@ -15,9 +15,9 @@ rode o comando
 ```bash
     #rodar o codigo fonte juntamente com o docker 
     git clone https://github.com/MarceloSkank/ECGRemote.git
-    docker build -t "<nome da imagem>" ./
+    docker build -t <nome da imagem> .
 
-    docker run -p 3333:3333 "<nome da imagem>"
+    docker run -p 3333:3333 <nome da imagem>
 
     #rodar somente a imagem 
     docker pull marcelojanke/ecg_remoto

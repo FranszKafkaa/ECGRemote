@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json /app
 
 
-RUN npm install
+RUN yarn install
 COPY . /app
 
 RUN \
@@ -18,4 +18,4 @@ RUN \
 RUN pip3 install biosppy
 
 EXPOSE 3333
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]
