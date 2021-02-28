@@ -9,25 +9,41 @@
     <li>Biblioteca Python biosppy</li>
 </ul>
 
-rode o comando
 <br>
+<hr>
 
-```bash
-    #rodar o codigo fonte juntamente com o docker 
-    git clone https://github.com/MarceloSkank/ECGRemote.git
-    docker build -t <nome da imagem> .
+<h2>Instalação</h2>
 
-    docker run -p 3333:3333 <nome da imagem>
+<ul>   
+    <li>Codigo Fonte com Nodejs e Python</li>
+    <ul><li>Instalar NodeJS: <a href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
+    <li>Com NodeJS Instalar yarn pkg com o Comando
+    <code>npm install --global yarn</code>
+    </li>
+    <li>usando o terminal, vá ate a pasta do projeto : <code>cd EcgRemote-master/</code></li>
+    <li>na pasta do projeto instale os pacotes: <code>yarn install</code></li>
+    <li>Com Python Instalar pip: <code>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py ; python get-pip.py</code></li>
+    <li>instalar biosspy: <code>pip install biosspy</code></li>
+    <li>e rodar o comando <code>yarn dev</code></li>
+    <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
+    </ul>
+    <li>Baixar a imagem direto do docker
+    <ul><li>Instalar docker  <a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></li>
+    <li>no terminal, baixar a imagem: <code>docker pull marcelojanke/ecg_remoto ; docker run -d -p 3333:3333 marcelojanke/ecg_remoto</code></li>
+    <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
+    </ul>
+    </li>
+    <li>Rodar o projeto Com o codigo fonte mais Docker
+    <ul><li>na pasta do projeto faca o build do mesmo<code> docker build -t "nome da imagem" . ; docker run -d -p 3333:3333 "nome da imagem"</code></li>
+      <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
+    </ul>
+    </li>
+</ul>
 
-    #rodar somente a imagem 
-    docker pull marcelojanke/ecg_remoto
-    docker run -p 3333:3333 marcelojanke/ecg_remoto
 
-    #rodar localmente (sem o docker) 
-    npm install ou yarn install
-    
-    pip3 install biosppy 
-```
+<hr>
+
+
 Versão Cloud:
 <ul>
     <li>Frontend Removido - será colocado em outro repositório</li>
