@@ -20,7 +20,12 @@ const {inspect} = require("util")
 // Rota metodo ip user-agent statusCode
 eventEmitter.on("saveReq", (req, _res) => {
     let id = require('uniqid')
-    
+
+
+    let json_data = req.body.constructor === Object && Object.keys(req.body).length === 0 ? req.query : req.body
+
+    console.log(json_data)
+
     let nomeArquivo = id()+ ".txt"
     let caminho = path.resolve(__dirname, "../", "conectados/" + nomeArquivo)
 
@@ -30,7 +35,7 @@ eventEmitter.on("saveReq", (req, _res) => {
 
 
     nomeArquivo = [nomeArquivo, caminho, req.header('x-forwarded-for') || 
-    req.socket.remoteAddress, JSON.stringify(req.body),req.get('user-agent'),
+    req.socket.remoteAddress, JSON.stringify(json_data) ,req.get('user-agent'),
     _res.statusCode, JSON.stringify(req.route.path),req.method]
 
     console.log(nomeArquivo)
@@ -48,7 +53,7 @@ router.post("/demo", (_req, res) => {
 })
 
 router.post("/savelog", (req,res) => {
-   
+
     let data = [req.header('x-forwarded-for') || 
     req.socket.remoteAddress, JSON.stringify(req.body),req.get('user-agent')]
 
@@ -84,6 +89,12 @@ router.get("/gettxt", (req,res) => {
 
     res.download(caminho)
     //eventEmitter.emit("saveReq", req)
+})
+
+router.get("/salsa", (req,res) => {
+
+    res.json(req.query)
+    eventEmitter.emit("saveReq", req,res)
 })
 
 router.get("/seetxt", (req,res) => {
