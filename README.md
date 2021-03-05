@@ -52,8 +52,8 @@ pip install biosspy
 #### Docker Version
 Voce so precisa fazer o "puxar" as configuracoes do container diretamente do registro `marcelojanke/ecg_remoto` que esta na nuvem e escolher um nome para ***SEU_CONTAINER***.
 ```sh
-sudo docker pull marcelojanke/ecg_remoto ;
-sudo docker run -d -p 3333:3333 --name SEU_CONTAINER marcelojanke/ecg_remoto
+docker pull marcelojanke/ecg_remoto ;
+docker run -d -p 3333:3333 --name SEU_CONTAINER marcelojanke/ecg_remoto
 ```
 
 ## Utilizacao
@@ -71,14 +71,14 @@ http://localhost:3333/
 #### Docker Version
 1. Verifique se ***SEU_CONTAINER*** esta na lista de containers e se esta executando
 ```sh
-sudo docker ps -a
+docker ps -a
 ```
 Coluna *STATUS* da figura esta em **Up** quando o container esta executando. *STATUS* **Exited** indica o container parado. 
 ![](./img/printTerminal.png)
 
 2. Caso ***SEU_CONTAINER*** esteja na lista e esta parado, voce pode inicializa-lo:
 ```sh
-sudo docker container start SEU_CONTAINER
+docker container start SEU_CONTAINER
 ```
 3. Com seu container executando, visualize o servidor rodando no navegador `http://seu_numero_ip:3333/`
 
@@ -86,12 +86,12 @@ sudo docker container start SEU_CONTAINER
 
 4. Caso ***SEU_CONTAINER*** esteja na lista e executando, voce pode para-lo:
 ```sh
-sudo docker container stop SEU_CONTAINER
+docker container stop SEU_CONTAINER
 ```
 5. Voce pode remover ***SEU_CONTAINER*** da lista de containers: 
 ```sh
-sudo docker container stop SEU_CONTAINER
-sudo docker container rm SEU_CONTAINER
+docker container stop SEU_CONTAINER
+docker container rm SEU_CONTAINER
 ```
 
 ## Rotas
