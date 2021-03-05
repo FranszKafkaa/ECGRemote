@@ -19,7 +19,7 @@ class NDArrayEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-json_str = json.dumps({'test': out["templates"], "time" : out["ts"], "filtered" : out['filtered']}, cls=NDArrayEncoder)
+json_str = json.dumps({'test': out["templates"], "time" : out["ts"], "filtered" : out['filtered'], 'rpeaks': out["rpeaks"],'bpm' :out["heart_rate"]}, cls=NDArrayEncoder)
 
 print(json_str)
 
