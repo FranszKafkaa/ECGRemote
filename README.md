@@ -1,72 +1,107 @@
-<h1><i>Projeto de ECG remoto</i></h1>
+# Projeto de ECG remoto
 
-![alt text](img.png)
+![](./img/img.png)
 
-<p>Requisitos para rodar na própria máquina </p>
-<ul>   
-    <li>NodeJS</li>
-    <li>Python 3.x</li>
-    <li>Biblioteca Python biosppy</li>
-</ul>
+Aqui voce encontra o codigo fonte do servidor (back-end) do projeto _ECG remoto_. _ECG remoto_ eh um projeto de pesquisa com apoio do [IFSul](www.ifsul.edu.br)
+ 
+Este servidor esta preparado para receber dados de exames de Eletrocardiograma (ECG) enviados de dispositivos com capacidade de coneccao a internet.
+O hardware para realizacao do exame e envio dos dados coletados esta em desenvolvimento.
 
-<br>
-<hr>
+O servidor esta hospedado em [http://ecgremoto.herokuapp.com/](http://ecgremoto.herokuapp.com/).
 
-<h2>Instalação</h2>
+A visualizacao dos dados do servidor esta disponivel no nosso front-end 
+O front-end esta em [http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/](http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/) - versao em desenvolvimento
 
-<ul>   
-    <li>Codigo Fonte com Nodejs e Python</li>
-    <ul><li>Instalar NodeJS: <a href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
-    <li>Com NodeJS Instalar yarn pkg com o Comando
-    <code>npm install --global yarn</code>
-    </li>
-    <li>usando o terminal, vá ate a pasta do projeto : <code>cd EcgRemote-master/</code></li>
-    <li>na pasta do projeto instale os pacotes: <code>yarn install</code></li>
-    <li>Com Python Instalar pip: <code>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py ; python get-pip.py</code></li>
-    <li>instalar biosspy: <code>pip install biosspy</code></li>
-    <li>e rodar o comando <code>yarn dev</code></li>
-    <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
-    </ul>
-    <li>Baixar a imagem direto do docker
-    <ul><li>Instalar docker  <a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></li>
-    <li>no terminal, baixar a imagem: <code>docker pull marcelojanke/ecg_remoto ; docker run -d -p 3333:3333 marcelojanke/ecg_remoto</code></li>
-    <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
-    </ul>
-    </li>
-    <li>Rodar o projeto Com o codigo fonte mais Docker
-    <ul><li>Instalar docker  <a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></li><li>na pasta do projeto faca o build do mesmo<code> docker build -t "nome da imagem" . ; docker run -d -p 3333:3333 "nome da imagem"</code></li>
-      <li>o projeto esta rodando na porta 3333 <a href="http://localhost:3333/">http://localhost:3333/</a></li>
-    </ul>
-    </li>
-</ul>
+## Preliminares
 
-<hr>
-<h2>Events</h2>
-<h3>saveReq:</h3> salva as requisicoes feitas e gera um txt para download nas rotas:<code>/demo, /savelog, /remove e na rota raiz /</code> 
-<hr>
 
-<h2>Rotas</h2>
-<ul>
-<li><code>POST /Demo</code>: Rota de testes para puxar os dados de ECG. <br> Dados de Retorno: <code> status code: 200 [{time: tempo em ms, filtered: dados filtrados do biosspy, test: dados do desenho do ecg}]</code></li>
-<br>
-<li><code>POST /savelog</code>: Salva as requisicoes que irao aparecer no <a href="http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/">http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/</a> <br>modo de envio {data: your_data} <br> data de retorno: <code>status code: 200 [{data: datetime, ip: ip do usuario que fez a requisição, json: dados que o usuario mandou na requisição}]</code></li>
-<br>
-<li><code>delete /remove</code>: deleta todas os dados armazenados gerado pela rota <code>/savelog</code><br>
-retorno:<code>status code: 200 {res: log deletado}</code>
-</li>
-<br>
-<li><code>get /see</code>: mostra dos dados gerado pela rota <code>/savelog</code><br>dados de retorno<code>[{data: datetime, ip: ip do usuario, json: dados enviados do usuario}]</code></li>
-<br>
-<li><code>get /gettxt</code>: faz o download do txt gerado pelo evento <code>saveReq</code></li>
-<br>
-<li><code>get /seetxt</code>: mostra os dados gerado pelo evento <code>saveReq</code><br>dados de retorno <code>[{nome_arquivo: nome do txt gerado, link: link para download do txt,caminho_arquivo:caminho do arquivo,json_data: dados enviados pelo usuario,rota: rota utilizada na requisição, method: metodo da requisicao }]</code></li>
-<br>
-<li><code>GET /</code>: a rota raiz, somente mostra o status code: <code>status code: 200{req: 200}</code></li>
-</ul>
-<hr>
+Voce tem 2 formas de utilizar o servidor deste repositorio
+ 1. **Full Local** - Configurando todo o ambiente em sua maquina local. Nesta opcao voce vai precisar instalar todas as ferramentas e fazer o download deste repositorio. 
+ 2. **Docker Version** - Montando o ambiente pronto e sem fazer download. Nesta opcao voce so precisa instalar o Docker e montar a imagem do ambiente pronto diretamente da nuvem, sem fazer download.
 
-Versão Cloud:
-<ul>
-    <li>Frontend Removido - será colocado em outro repositório</li>
-    <li>Integracao completa com o Docker</li>
-</ul>   
+## Requisitos
+#### Full Local 
+- NodeJS [https://nodejs.org/en/](https://nodejs.org/en/)
+- Python 3.x [https://www.python.org/downloads/](https://www.python.org/downloads/)
+- Biblioteca Python biosppy
+- Repositorio ECG Remoto
+
+#### Docker Version
+- Docker [https://docs.docker.com/](https://docs.docker.com/)
+
+
+## Instalação
+#### Full Local 
+1. Faca download deste repositorio
+```sh
+git clone https://github.com/MarceloSkank/ECGRemote .
+```
+2. Instale o pacote yarn do NodeJS 
+```sh
+npm install --global yarn
+cd EcgRemote/
+yarn install
+```
+3. Instale o BiosSPy por meio do pip 
+```sh
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+pip install biosspy
+```
+
+#### Docker Version
+Voce so precisa fazer o "puxar" as configuracoes do container diretamente do registro `marcelojanke/ecg_remoto` que esta na nuvem e escolher um nome para ***SEU_CONTAINER***.
+```sh
+docker pull marcelojanke/ecg_remoto ;
+docker run -d -p 3333:3333 --name SEU_CONTAINER marcelojanke/ecg_remoto
+```
+
+## Utilizacao
+Apos o set-up do ambiente escolhido, voce precisa destes comandos para executar
+#### Full Local 
+No diretorio `ECGRemote` execute:
+```sh
+yarn dev
+```
+Visualize o servidor rodando no navegador:
+```sh
+http://localhost:3333/
+```
+
+#### Docker Version
+1. Verifique se ***SEU_CONTAINER*** esta na lista de containers e se esta executando
+```sh
+docker ps -a
+```
+Coluna *STATUS* da figura esta em **Up** quando o container esta executando. *STATUS* **Exited** indica o container parado. 
+![](./img/printTerminal.png)
+
+2. Caso ***SEU_CONTAINER*** esteja na lista e esta parado, voce pode inicializa-lo:
+```sh
+docker container start SEU_CONTAINER
+```
+3. Com seu container executando, visualize o servidor rodando no navegador `http://seu_numero_ip:3333/`
+
+![](./img/printNavegador.png)
+
+4. Caso ***SEU_CONTAINER*** esteja na lista e executando, voce pode para-lo:
+```sh
+docker container stop SEU_CONTAINER
+```
+5. Voce pode remover ***SEU_CONTAINER*** da lista de containers: 
+```sh
+docker container stop SEU_CONTAINER
+docker container rm SEU_CONTAINER
+```
+
+## Rotas
+| Rota               | Metodo | Descricao                                                                                                  |
+|--------------------|--------|------------------------------------------------------------------------------------------------------------|
+| `/demo`            | POST   | Rota para testar requisicoes POST. Retorna `{"res":200}` em caso de sucesso.                               |
+| `/savelog`         | POST   | Salva as requisicoes no formato `{data:SEU_DADO}`                                                          |
+| `/`                | GET    | Rota para testar requisicoes GET. Retorna `{"res":200}` em caso de sucesso                                 |
+| `/see`             | GET    | Lista todas requisicoes POST na rota `/savelog`                                                            |
+| `/seetxt`          | GET    | Lista todas requisicoes ja realizadas no servidor                                                          |
+| `/gettxt`          | GET    | Faz o download do txt com todas as requisicoes feitas em `saveReq`                                         |
+| `/rotaAlternativa` | GET    | Alternativa para o POST em /savelog. Exemplo: http://ecgremoto.herokuapp.com/rotaAlternativa?data=SEU_DADO |
+| `/remove`          | DELETE | deleta todas os dados armazenados gerado pela rota `/savelog`                                              |
