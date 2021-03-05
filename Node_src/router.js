@@ -91,7 +91,7 @@ router.get("/gettxt", (req,res) => {
     //eventEmitter.emit("saveReq", req)
 })
 
-router.get("/salsa", (req,res) => {
+router.get("/rotaAlternativa", (req,res) => {
 
     res.json(req.query)
     eventEmitter.emit("saveReq", req,res)
