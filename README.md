@@ -1,6 +1,6 @@
 # Projeto de ECG remoto
 
-![](./img.png)
+![](./img/img.png)
 
 Aqui voce encontra o codigo fonte do servidor (back-end) do projeto _ECG remoto_. _ECG remoto_ eh um projeto de pesquisa com apoio do [IFSul](www.ifsul.edu.br)
  
@@ -53,7 +53,7 @@ pip install biosspy
 Voce so precisa fazer o "puxar" as configuracoes do container diretamente do registro `marcelojanke/ecg_remoto` que esta na nuvem e escolher um nome para ***SEU_CONTAINER***.
 ```sh
 sudo docker pull marcelojanke/ecg_remoto ;
-sudo docker run -d -p 3333:3333 marcelojanke/ecg_remoto -name SEU_CONTAINER
+sudo docker run -d -p 3333:3333 --name SEU_CONTAINER marcelojanke/ecg_remoto
 ```
 
 ## Utilizacao
@@ -69,6 +69,7 @@ http://localhost:3333/
 ```
 
 #### Docker Version
+![](./img/printTerminal.png)
 1. Verifique se ***SEU_CONTAINER*** esta na lista de containers e se esta executando
 ```sh
 sudo docker ps -a
@@ -77,10 +78,10 @@ sudo docker ps -a
 ```sh
 sudo docker container start SEU_CONTAINER
 ```
-3. Com seu container executando, visualize o servidor rodando no navegador
-```sh
-http://seu_numero_ip:3333/
-```
+3. Com seu container executando, visualize o servidor rodando no navegador `http://seu_numero_ip:3333/`
+
+![](./img/printTerminal.png)
+
 4. Caso ***SEU_CONTAINER*** esteja na lista e executando, voce pode para-lo:
 ```sh
 sudo docker container stop SEU_CONTAINER
