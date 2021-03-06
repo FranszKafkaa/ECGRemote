@@ -98,10 +98,10 @@ docker container rm SEU_CONTAINER
 | Rota               | Metodo | Descricao                                                                                                  |
 |--------------------|--------|------------------------------------------------------------------------------------------------------------|
 | `/demo`            | POST   | Rota para testar requisicoes POST. Retorna `{"res":200}` em caso de sucesso.                               |
-| `/savelog`         | POST   | Salva as requisicoes no formato `{data:SEU_DADO}`                                                          |
+| `/savelog`         | POST   | Salva as requisicoes no formato `{"data":[SEU_DADO_1, ..., SEU_DADO_N]}`. Voce pode enviar uma rajada de dados por vez.                                                          |
 | `/`                | GET    | Rota para testar requisicoes GET. Retorna `{"res":200}` em caso de sucesso                                 |
 | `/see`             | GET    | Lista todas requisicoes POST na rota `/savelog`                                                            |
 | `/seetxt`          | GET    | Lista todas requisicoes ja realizadas no servidor                                                          |
-| `/gettxt`          | GET    | Faz o download do txt com todas as requisicoes feitas em `saveReq`                                         |
-| `/rotaAlternativa` | GET    | Alternativa para o POST em /savelog. Exemplo: http://ecgremoto.herokuapp.com/rotaAlternativa?data=SEU_DADO |
+| `/gettxt`          | GET    | Faz o download do txt com todas as requisicoes feitas no servidor                                         |
+| `/rotaAlternativa` | GET    | Alternativa para o POST em `/savelog`. Envia apenas um dado por vez. Exemplo: http://ecgremoto.herokuapp.com/rotaAlternativa?grupoID=ID&data=SEU_DADO |
 | `/remove`          | DELETE | deleta todas os dados armazenados gerado pela rota `/savelog`                                              |
