@@ -6,11 +6,11 @@ const path = require("path")
 const dbo = require("./db")
 let event = require("events")
 
+const examDBO = require("./database/Controller/exam")
 
 const eventEmitter = new event.EventEmitter()
 
 const {inspect} = require("util") 
-
 
 // Criar um arquivo para cada transmissao de dados
 // criar um timeout de conexao
@@ -101,6 +101,9 @@ router.get("/seetxt", (req,res) => {
     dbo.get_txt(res);
 })
 
+router.get("/sendData", (req,res) => {
+    examDBO.create(req,res)
+})
 
 
 

@@ -1,7 +1,7 @@
 FROM node:latest
 RUN mkdir /app
 
-LABEL AUTHOR="Marcelo Janke <marcelojanke@live.com>"
+LABEL AUTHOR="Marcelo Janke <marcelojanke@outlook.com>"
 
 WORKDIR /app
 COPY package.json /app
@@ -16,6 +16,9 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install biosppy
+
+RUN pip3 install pymongo[tls] ; pip3 install python-dotenv ; pip3 install dnspython ; pip3 install certifi
+
 
 EXPOSE 3333
 CMD ["yarn", "start"]

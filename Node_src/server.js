@@ -1,14 +1,21 @@
 const app = require("express")()
 const router = require('./router')
 const bp = require('body-parser')
+const mongoDB = require('./database/mongo')
 
+
+mongoDB.mongodb.once("open", _ => {
+  console.log("Mongo Conectado")
+})
 
 let allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Headers', "*");
   next();
 }
+
 app.use(allowCrossDomain);
+
 
 app.set('view engine', 'html')
 
