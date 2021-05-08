@@ -1,0 +1,22 @@
+version: "1"
+
+services:
+    server:
+        container_name: "EcgRemote-Backend"
+        build: '.'
+        
+        env_file: .env
+
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - 3333:3333 
+    db:
+        image: 'mongo'
+        container_name: mongodb
+        ports:
+            - 27017:27017
+        
+

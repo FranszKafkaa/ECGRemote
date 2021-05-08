@@ -105,3 +105,6 @@ docker container rm SEU_CONTAINER
 | `/gettxt`          | GET    | Faz o download do txt com todas as requisicoes feitas em `saveReq`                                         |
 | `/rotaAlternativa` | GET    | Alternativa para o POST em /savelog. Exemplo: http://ecgremoto.herokuapp.com/rotaAlternativa?data=SEU_DADO |
 | `/remove`          | DELETE | deleta todas os dados armazenados gerado pela rota `/savelog`                                              |
+
+
+### Comunicação entre Servidor <-> Hardware

@@ -12,6 +12,7 @@ const eventEmitter = new event.EventEmitter()
 
 const {inspect} = require("util") 
 
+
 // Criar um arquivo para cada transmissao de dados
 // criar um timeout de conexao
 // criar o link pro txt da req na rota /seetxt
@@ -43,7 +44,7 @@ eventEmitter.on("saveReq", (req, _res) => {
     dbo.save_txt(nomeArquivo)
     
 })
-
+//rota de teste
 
 router.post("/demo", (_req, res) => {
     
@@ -52,6 +53,8 @@ router.post("/demo", (_req, res) => {
     eventEmitter.emit("saveReq",_req, res)
 })
 
+
+//Rotas Para logs no mysql
 router.post("/savelog", (req,res) => {
 
     let data = [req.header('x-forwarded-for') || 
@@ -101,12 +104,36 @@ router.get("/seetxt", (req,res) => {
     dbo.get_txt(res);
 })
 
-router.get("/sendData", (req,res) => {
-    examDBO.create(req,res)
+//Rotas para mongoDB
+
+router.post("/save_exam", (req,res) => {
+    //res.json(req.body)
+    examDBO.create(req.body,res)
+})
+
+router.post("/save_user", (req,res) => {
+    res.json("teste")
+})
+router.delete("/:user/exams/:id/remove", (req,res) => {
+    examDBO.removeExam(req,res)
+})
+
+router.get("/:user/exams/update/:id", (req,res) => {
+    //res.json(req.query)
+    examDBO.findAndUpdate(req,res)
+})
+
+router.get("/list_all", (req,res) => {
+    examDBO.find(req.query,res)
+})
+
+router.get("/:user/exams/:id", (req,res) =>{
+    examDBO.findById(req,res)
 })
 
 
 
+//Rota Raiz
 router.get("/", (req,res) => {
     res.json({"res": res.statusCode})
     eventEmitter.emit("saveReq", req, res)

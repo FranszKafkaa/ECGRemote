@@ -7,14 +7,20 @@ import dns
 import certifi
 
 load_dotenv(find_dotenv())
+
 dbClient = MongoClient(os.environ.get("MONGO_DB_URL"), tlsCAFile=certifi.where()).get_default_database()
-doctor = dict({"name" : "Paulo Jaime", "doctor": True, "email": "jaiminho@outlook.com", "telefone" : "2932983"})
+
+doctor = dict({"name" : "Paulo Jaime", "userName" : "paulojaime",
+ "doctor": True, "email": "jaiminho@outlook.com", "telefone" : "2932983"})
+
 def setUsers():
     userList = []
 
-    patients = [dict({"name" : "Marcelo Janke", "doctor": False, 
-        "email": "marcelojanke@outlook.com", "telefone" : "2932983"}),dict({"name" : "Fulano", "doctor": False, 
+    patients = [dict({"name" : "Marcelo Janke","userName": "marcelojanke", "doctor": False, 
+        "email": "marcelojanke@outlook.com", "telefone" : "2932983"}),dict({"name" : "Fulano",
+        "userName": "fulanozika", "doctor": False, 
         "email": "fulano@outlook.com", "telefone" : "2932983"})]
+    
     
     for i in patients:
         userList.append(dbClient.patients.insert_one(i).inserted_id)
@@ -39,7 +45,7 @@ for i in fileDir:
         mdata["title"] = j[0: -4]
         mdata["type"] = i
 
-        print("sended to database by id {}".format(dbClient.testExams.insert_one(mdata).inserted_id))
+        print("sended to database by id {}".format(dbClient.exams.insert_one(mdata).inserted_id))
 
     count = 0;
     print("folder {} done".format(i))

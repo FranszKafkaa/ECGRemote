@@ -4,8 +4,8 @@ const mongoose = require("mongoose")
 
 class dbConnect{
     constructor(){
-        mongoose.connect("mongodb+srv://root:Valdisnei123@cluster0.aqjra.mongodb.net/ecgremoto?retryWrites=true&w=majority",
-{useNewUrlParser: true, useUnifiedTopology: true})
+
+        mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 
         this.mongodb = mongoose.connection;
 

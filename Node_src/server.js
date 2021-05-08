@@ -1,11 +1,14 @@
 const app = require("express")()
 const router = require('./router')
 const bp = require('body-parser')
+
+
+require("dotenv").config()
+
 const mongoDB = require('./database/mongo')
 
-
-mongoDB.mongodb.once("open", _ => {
-  console.log("Mongo Conectado")
+mongoDB.mongodb.once("open",  _ => {
+    console.log("Mongo Conectado")
 })
 
 let allowCrossDomain = (req, res, next) => {
