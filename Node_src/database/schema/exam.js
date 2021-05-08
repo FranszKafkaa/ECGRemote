@@ -5,6 +5,10 @@ const types = Schema.Types
 const examSchema = new Schema({
     title: types.String,
     data: types.Array,
+    datetime: {
+        type: "String",
+        default: new Date()
+    },
     type: types.String,
     userId: types.String,
     sampling_rate: types.String,

@@ -7,7 +7,7 @@ Aqui voce encontra o codigo fonte do servidor (back-end) do projeto _ECG remoto_
 Este servidor esta preparado para receber dados de exames de Eletrocardiograma (ECG) enviados de dispositivos com capacidade de coneccao a internet.
 O hardware para realizacao do exame e envio dos dados coletados esta em desenvolvimento.
 
-O servidor esta hospedado em [http://ecgremoto.herokuapp.com/](http://ecgremoto.herokuapp.com/).
+O servidor esta hospedado em [https://ecgremote.herokuapp.com](https://ecgremote.herokuapp.com/).
 
 A visualizacao dos dados do servidor esta disponivel no nosso front-end 
 O front-end esta em [http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/](http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/) - versao em desenvolvimento

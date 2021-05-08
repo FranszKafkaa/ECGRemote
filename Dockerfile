@@ -16,6 +16,7 @@ RUN \
 
 RUN pip3 install biosppy
 
+RUN cp .env.example .env
 
 RUN pip3 install pymongo[tls] ; pip3 install python-dotenv ;\
  pip3 install dnspython ; pip3 install certifi ; pip3 install requests

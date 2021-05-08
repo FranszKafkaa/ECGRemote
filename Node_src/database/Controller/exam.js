@@ -18,9 +18,15 @@ class examController{
     async findAndUpdate(req,res){
         const result = await exam.findById(req.params.id)
 
-        result["data"].push(parseInt(req.query["data"]))
-        result.save()
-        res.json({"res": res.statusCode})
+        if(result != null){
+            result["data"].push(parseInt(req.query["data"]))
+            result.save()
+            res.json({"res": res.statusCode})
+
+            return null
+        }
+        res.json({"res": "Exame nao encontrado"})
+        
     }
 
     async findById(req,res){
