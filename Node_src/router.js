@@ -131,6 +131,11 @@ router.get("/:user/exams/:id", (req,res) =>{
     examDBO.findById(req,res)
 })
 
+router.post("/update_exam/:id", (req,res) => {
+
+    examDBO.postUpdate(req,res)
+})
+
 
 
 //Rota Raiz

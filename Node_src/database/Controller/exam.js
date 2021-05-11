@@ -36,6 +36,20 @@ class examController{
 
     }
 
+    async postUpdate(req,res){
+        const result = await exam.findById(req.params.id)
+        
+        req.body.data.forEach(element => {
+            result["data"].push(parseInt(element))
+        });
+
+        result.save()
+
+        console.log(result)
+
+        res.json({"Status":"Exame Salvo"})
+    }
+
     async removeExam(req,res){
         const result = await exam.deleteOne(req.param.id)
 

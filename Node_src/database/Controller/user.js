@@ -13,6 +13,7 @@ class userController{
     }
 
     async findById(req,res){
+        
 
     }
     async remove(req,res){
