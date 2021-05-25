@@ -1,5 +1,5 @@
 const exam = require("../schema/exam")
-
+const user = require ("./user")
 class examController{
 
     async create(req,res){
@@ -55,6 +55,13 @@ class examController{
     
 
         
+    }
+
+    async listByUser(req,res){
+        
+        let result = exam.find({"userId": req.param.name})
+
+        res.json(result)
     }
 
     async removeExam(req,res){

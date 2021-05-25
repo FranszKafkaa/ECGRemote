@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const data = require("./class")
+const set_data  = require("./class")
 
 const fs = require("fs")
 const path = require("path")
@@ -43,14 +43,6 @@ eventEmitter.on("saveReq", (req, _res) => {
 
     dbo.save_txt(nomeArquivo)
     
-})
-//rota de teste
-
-router.post("/demo", (_req, res) => {
-    
-    res.json({"res": JSON.parse(data.getShaHead())})
-    
-    eventEmitter.emit("saveReq",_req, res)
 })
 
 
@@ -136,6 +128,11 @@ router.post("/update_exam/:id", (req,res) => {
     examDBO.postUpdate(req,res)
 })
 
+router.get("/render",(req,res) => {
+    const data = new set_data(req.query["id"])
+    
+    res.json({"res": JSON.parse(data.getShaHead())})
+})
 
 
 //Rota Raiz
