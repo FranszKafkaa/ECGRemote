@@ -25,6 +25,6 @@ app.set('view engine', 'html')
 app.use(bp.json()).use(bp.urlencoded({extended: true})).use(router)
 
 
-app.listen(process.env.PORT || 3333, () => {
+app.listen(process.env.PORT || 3366, () => {
     console.log("server started")
 })

@@ -16,8 +16,7 @@ import certifi
 load_dotenv(find_dotenv())
 
 if(len(sys.argv) == 1):
-    print("cade o id seu bobao?")
-    exit(-1)
+    raise Exception("cade o id seu bobao?")
 
 queary = {"_id": ObjectId(sys.argv[1])}
 
