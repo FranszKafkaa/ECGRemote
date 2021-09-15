@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from dotenv import load_dotenv, find_dotenv
 from biosppy import storage
 
-import dns
 import certifi
 
 load_dotenv(find_dotenv())
