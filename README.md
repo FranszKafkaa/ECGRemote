@@ -109,7 +109,7 @@ docker container rm SEU_CONTAINER
 
 ## Rotas
 | Rota               | Metodo | Descricao                                                                                                  |
-|--------------------|--------|------------------------------------------------------------------------------------------------------------|                            |
+|--------------------|--------|------------------------------------------------------------------------------------------------------------|
 | `/savelog`         | POST   | Salva as requisicoes no formato `{data:SEU_DADO}`                                                          |
 | `/`                | GET    | Rota para testar requisicoes GET. Retorna `{"res":200}` em caso de sucesso                                 |
 | `/see`             | GET    | Lista todas requisicoes POST na rota `/savelog`                                                            |
