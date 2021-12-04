@@ -1,11 +1,12 @@
 const router = require("express").Router()
-const data = require("./class")
+const set_data  = require("./class")
 
 const fs = require("fs")
 const path = require("path")
 const dbo = require("./db")
 let event = require("events")
 
+const examDBO = require("./database/Controller/exam")
 
 const eventEmitter = new event.EventEmitter()
 
@@ -45,13 +46,7 @@ eventEmitter.on("saveReq", (req, _res) => {
 })
 
 
-router.post("/demo", (_req, res) => {
-    
-    res.json({"res": JSON.parse(data.getShaHead())})
-    
-    eventEmitter.emit("saveReq",_req, res)
-})
-
+//Rotas Para logs no mysql
 router.post("/savelog", (req,res) => {
 
     let data = [req.header('x-forwarded-for') || 
@@ -91,7 +86,7 @@ router.get("/gettxt", (req,res) => {
     //eventEmitter.emit("saveReq", req)
 })
 
-router.get("/salsa", (req,res) => {
+router.get("/rotaAlternativa", (req,res) => {
 
     res.json(req.query)
     eventEmitter.emit("saveReq", req,res)
@@ -101,9 +96,46 @@ router.get("/seetxt", (req,res) => {
     dbo.get_txt(res);
 })
 
+//Rotas para mongoDB
+
+router.post("/save_exam", (req,res) => {
+    //res.json(req.body)
+    examDBO.create(req.body,res)
+})
+
+router.post("/save_user", (req,res) => {
+    res.json("teste")
+})
+router.delete("/:user/exams/:id/remove", (req,res) => {
+    examDBO.removeExam(req,res)
+})
+
+router.get("/:user/exams/update/:id", (req,res) => {
+    //res.json(req.query)
+    examDBO.findAndUpdate(req,res)
+})
+
+router.get("/list_all", (req,res) => {
+    examDBO.find(req.query,res)
+})
+
+router.get("/:user/exams/:id", (req,res) =>{
+    examDBO.findById(req,res)
+})
+
+router.post("/update_exam/:id", (req,res) => {
+
+    examDBO.postUpdate(req,res)
+})
+
+router.get("/render",(req,res) => {
+    const data = new set_data(req.query["id"])
+    
+    res.json({"res": JSON.parse(data.getShaHead())})
+})
 
 
-
+//Rota Raiz
 router.get("/", (req,res) => {
     res.json({"res": res.statusCode})
     eventEmitter.emit("saveReq", req, res)

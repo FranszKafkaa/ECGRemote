@@ -7,7 +7,7 @@ Aqui voce encontra o codigo fonte do servidor (back-end) do projeto _ECG remoto_
 Este servidor esta preparado para receber dados de exames de Eletrocardiograma (ECG) enviados de dispositivos com capacidade de coneccao a internet.
 O hardware para realizacao do exame e envio dos dados coletados esta em desenvolvimento.
 
-O servidor esta hospedado em [http://ecgremoto.herokuapp.com/](http://ecgremoto.herokuapp.com/).
+O servidor esta hospedado em [https://ecgremote.herokuapp.com](https://ecgremote.herokuapp.com/).
 
 A visualizacao dos dados do servidor esta disponivel no nosso front-end 
 O front-end esta em [http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/](http://tsi.charqueadas.ifsul.edu.br/~ecgremoto/) - versao em desenvolvimento
@@ -105,3 +105,12 @@ docker container rm SEU_CONTAINER
 | `/gettxt`          | GET    | Faz o download do txt com todas as requisicoes feitas no servidor                                         |
 | `/rotaAlternativa` | GET    | Alternativa para o POST em `/savelog`. Envia apenas um dado por vez. Exemplo: http://ecgremoto.herokuapp.com/rotaAlternativa?grupoID=ID&data=SEU_DADO |
 | `/remove`          | DELETE | deleta todas os dados armazenados gerado pela rota `/savelog`                                              |
+| `/save_exam`       | POST   | Salva os exames no formato `{sampling_rate": 360,"resolution": 145,"labels": ["ECG"],"data": [968,870,1110,4567],	"userId": "Fulano de tal",	"title": "Ola",type": "1 NSR"}`
+| `/:user/exams/:id/remove` |DELETE| Remove o Exame pelo ID
+|`/:user/exams/update/:id`| GET | Faz um Update do exame pelo ID (utilizado para acresentar mais dados de ecg) exemplo: http://ecgremoto.herokuapp.com/{nome}/exams/update/{id}?data=1234 
+|`/list_all`        | GET   | Lista todos os exames
+|`/:user/exams/:id` | GET | Acessa o exame Pelo ID|
+|`/update_exam/:id` |POST| Faz a mesma coisa que a rota `/:user/exams/update/:id`, porem é ustilizada com o metodo POST (utilizado para acresentar mais dados de ecg) 
+|`/render`| GET | Processa os dados do exame utilizando o processo Python exemplo http://ecgremoto.herokuapp.com/render?id=ID_DO_EXAME
+
+### Comunicação entre Servidor <-> Hardware

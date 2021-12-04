@@ -28,7 +28,7 @@ class dbo {
         })
     }
     get_txt(res){
-        this.connection.query("select * from req_txt_log", (err, result ) => {
+        this.connection.query("select * from req_txt_log order by data_arquivo desc", (err, result ) => {
             if(err) throw err 
 
             res.json(result)
